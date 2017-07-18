@@ -1,16 +1,26 @@
 <div class="row feed">
 	<div class="col-md-4">
-		<h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Login:</h4>
-		<br>
-		<input type="text" size="30" placeholder="Username">
-		<br><br>
-		<input type="password" size="30" placeholder="Password">
-		<br><br>
-		<a href="#!/signup">Not a member? Sign up!</a>
+		<div ng-hide="currentUser">
+			<h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Login:</h4>
+			<br>
+			<input type="text" size="30" placeholder="Username" ng-model="username">
+			<br><br>
+			<input type="password" size="30" placeholder="Password" ng-model="password">
+			<br><br>
+			<button type="button" class="btn" ng-click="signin()">Sign In!</button>
+			<br><br>
+			<a href="#!/signup">Not a member? Sign up!</a>
+		</div>
+
+	<div ng-show="currentUser">
+			<h2><span class="glyphicon glyphicon-user"></span> Hello, {{currentUser}} !</h2>
+			<br><br>
+			<a href ng-click="logout()">Log out</a>
+	</div>
 
 	</div>
 	<div class="col-md-8">
-		<div class="new-meow">
+		<div class="new-meow" ng-show="currentUser">
 			<input type="text" class="form-control" ng-model='newMeow' placeholder="What do you have to meow today?">
 			<button type="button" class="btn" ng-click='submitNewMeow()'>Meow!</button>
 		</div>
@@ -18,6 +28,8 @@
 			<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 			{{ meow.text }}
 			<a href ng-click="removeMeow(meow)" class="btn pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+			<br>
+			<small>{{meow.username}}</small>
 		</h3>
 	</div>
 </div>
