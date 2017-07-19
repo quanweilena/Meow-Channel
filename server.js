@@ -93,18 +93,6 @@ app.put('/users/signin', function(req,res,next){
 				}
 			});
 		});
-
-		bcrypt.genSalt(10, function(err, salt) {
-		    bcrypt.hash(req.body.password, salt, function(err, hash) {
-		        var newUser = {
-					username: req.body.username,
-					password: hash
-				};
-				usersCollection.insert(newUser, {w:1}, function(err){
-					return res.send();
-				});
-			});
-		});	
 	});
 });
 
