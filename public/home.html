@@ -1,28 +1,30 @@
 <div class="row feed">
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<div ng-hide="currentUser">
 			<h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Login:</h3>
 			<br>
-			<input type="text" size="30" placeholder="Username" ng-model="username">
-			<br><br>
-			<input type="password" size="30" placeholder="Password" ng-model="password">
-			<br><br>
+			<input type="text" size="30" placeholder="Username" ng-model="username" class="form-control input-md">
+			<br>
+			<input type="password" size="30" placeholder="Password" ng-model="password" class="form-control input-md">
+			<br>
 			<button type="button" class="btn btn-primary" ng-click="signin()">Sign In!</button>
 			<br><br>
-			<a href="#!/signup">Not a member? Sign up!</a>
+			<a href="#/signup">Not a member? Sign up!</a>
 		</div>
 
 	<div ng-show="currentUser">
-			<h2><span class="glyphicon glyphicon-user"></span> Hello, {{currentUser}} !</h2>
+			<h3><span class="glyphicon glyphicon-user"></span> Hello, {{currentUser}} !</h3>
 			<br><br>
 			<a href ng-click="logout()">Log out</a>
 	</div>
 
 	</div>
+	<div class="col-md-1"></div>
+
 	<div class="col-md-8">
 		<div class="new-meow" ng-show="currentUser">
 			<input type="text" class="form-control" ng-model='newMeow' placeholder="What do you have to meow today?">
-			<button type="button" class="btn" ng-click='submitNewMeow()'>Meow!</button>
+			<button type="button" class="btn btn-primary" ng-click='submitNewMeow()'>Meow!</button>
 		</div>
 		<h4 ng-repeat = "meow in meows">
 			<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
