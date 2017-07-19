@@ -70,6 +70,8 @@
 				$cookies.remove('currentUser');
 				$rootScope.token = null;
 				$rootScope.currentUser = null;
+				$scope.username = '';
+				$scope.password = '';
 			}
 
 			function getMeows(){
@@ -80,15 +82,15 @@
 			getMeows();
 		});
 
-		app.controller('SignupController', function($scope, $http){
+		app.controller('SignupController', function($scope, $http, $window){
 			$scope.submitSignup = function(){
 				var newUser = {
 					username: $scope.username,
 					password: $scope.password
 				};
 				$http.post('/users', newUser).then(function(){
-					console.log('success');
-					alert('success');
+					alert('You are successfully signed up!');
+					$window.location.href = '#';
 				});
 			}
 		});
@@ -97,7 +99,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="page-title page-header"><a href="#/">Mittens</a></h1>
+		<h1 class="page-title page-header"><a href="#/">Meow Channel</a></h1>
 		<div ng-view></div>
 	</div>
 </body>
