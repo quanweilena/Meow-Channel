@@ -82,15 +82,23 @@
 			getMeows();
 		});
 
-		app.controller('SignupController', function($scope, $http, $window){
+		app.controller('SignupController', function($scope, $http, $window, $cookies, $rootScope){
 			$scope.submitSignup = function(){
 				var newUser = {
 					username: $scope.username,
 					password: $scope.password
 				};
-				$http.post('/users', newUser).then(function(){
+				$http.post('/users', newUser).then(function(res){
 					alert('You are successfully signed up!');
+					$cookies.put('token', res.data.token);
+					$cookies.put('currentUser', $scope.username);
+					$rootScope.token = res.data.token;
+					$rootScope.currentUser = $scope.username;
 					$window.location.href = '#';
+				}, function(err){
+					alert('username already exists!');
+					$scope.username = '';
+					$scope.password = '';
 				});
 			}
 		});

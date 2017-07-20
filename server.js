@@ -56,19 +56,31 @@ app.put('/meows/remove', function(req,res,next){
 
 	db.collection('meows', function(err, meowsCollection){
 		var meowID = req.body.meow._id;
-		meowsCollection.remove({_id: ObjectId(meowID), user: user._id}, {w:1}, function(err){
+
+		if (user.username == 'admin'){
+			meowsCollection.remove({_id: ObjectId(meowID)}, {w:1}, function(err){
 		return res.send();
-		});
+			})
+		} else {
+			meowsCollection.remove({_id: ObjectId(meowID), user: user._id}, {w:1}, function(err){
+		return res.send();
+			})
+		}
+
+		// meowsCollection.remove({_id: ObjectId(meowID), user: user._id}, {w:1}, function(err){
+		// return res.send();
+		// });
 	});
 });
 
 app.post('/users', function(req,res,next){
 
 	db.collection('users', function(err, usersCollection){
-		// usersCollection.findOne({username: req.body.username}, function(err, user){
-		// 	if(user == null){
-		// 		alert("username exists");
-		// 	} else{
+		usersCollection.findOne({username: req.body.username}, function(err, user){
+			if(user != null){
+				console.log('username exists');
+				return res.status(400).send();
+			} else{
 				bcrypt.genSalt(10, function(err, salt) {
 				    bcrypt.hash(req.body.password, salt, function(err, hash) {
 				        var newUser = {
@@ -76,12 +88,14 @@ app.post('/users', function(req,res,next){
 							password: hash
 						};
 						usersCollection.insert(newUser, {w:1}, function(err){
-							return res.send();
+							var token = jwt.encode(newUser, JWT_SECRET);
+							return res.json({token: token});
+							// return res.send();
 						});
 					});
 				});	
-			// }
-			// })
+			}
+			})
 			
 	});
 });
