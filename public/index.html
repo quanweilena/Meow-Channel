@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="mittens">
 <head>
-	<title>Mittens</title>
+	<title>Meow-Channel</title>
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="angular.min.js"></script>
@@ -99,8 +99,16 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="page-title page-header"><a href="#/">Meow Channel</a></h1>
+		<h1 class="page-title page-header" id="pagetop"><a href="#/">Meow Channel</a></h1>
 		<div ng-view></div>
 	</div>
+	<!-- Footer -->
+	<footer class="text-center">
+	  <a class="up-arrow" href="#" data-toggle="tooltip" title="TO TOP">
+	    <span class="glyphicon glyphicon-chevron-up"></span>
+	  </a><br><br>
+	  <p>Design By Dan Zhou</p> 
+	  <p>Email: quanweilena@gmail.com</p>
+	</footer>
 </body>
 </html>

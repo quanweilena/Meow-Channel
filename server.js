@@ -65,17 +65,24 @@ app.put('/meows/remove', function(req,res,next){
 app.post('/users', function(req,res,next){
 
 	db.collection('users', function(err, usersCollection){
-		bcrypt.genSalt(10, function(err, salt) {
-		    bcrypt.hash(req.body.password, salt, function(err, hash) {
-		        var newUser = {
-					username: req.body.username,
-					password: hash
-				};
-				usersCollection.insert(newUser, {w:1}, function(err){
-					return res.send();
-				});
-			});
-		});	
+		// usersCollection.findOne({username: req.body.username}, function(err, user){
+		// 	if(user == null){
+		// 		alert("username exists");
+		// 	} else{
+				bcrypt.genSalt(10, function(err, salt) {
+				    bcrypt.hash(req.body.password, salt, function(err, hash) {
+				        var newUser = {
+							username: req.body.username,
+							password: hash
+						};
+						usersCollection.insert(newUser, {w:1}, function(err){
+							return res.send();
+						});
+					});
+				});	
+			// }
+			// })
+			
 	});
 });
 
