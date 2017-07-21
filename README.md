@@ -15,6 +15,18 @@ Angular.js   Node.js   Mongodb   npm
 5. Start Mongodb Service:``` mongod```
 6. Open your browser and input: ``` http://localhost:3000```
 
+## Instructions
+
+* Sign up:  Click "Not a member? Sign up!" on the main page to redirect to signup page.  Enter your username and password to create your own account.
+
+* Log in: Enter your username and password to log in.
+
+* Post Meows: After logging into your account, type whatever you want to meow today and hit "Meow!" button to post.  All the Meows are displayed as the order they posted.  Author of the Meow and the time that Meow was added are also displayed with the Meow.
+
+* Delete Meow:  Hit the "x" button to delete a Meow.  Note that one user can only delete his/her own Meows.  Admin user can delete all posted Meows.
+
+* Create admin user:  On signup page, use "admin" as the username to create the admin use to manage Meows.
+
 ## Authors
 
 * **Dan Zhou**
