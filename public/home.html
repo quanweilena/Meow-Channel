@@ -48,7 +48,7 @@
 			<h4 ng-repeat = "meow in meows">
 				<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 				{{ meow.text }}
-				<a href ng-click="removeMeow(meow)" class="btn pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+				<a href ng-click="removeMeow(meow)" class="btn pull-right" ng-show="currentUser==meow.username||currentUser=='admin'"><span class="glyphicon glyphicon-remove"></span></a>
 				<br>
 				<small>By {{meow.username}} </small>
 				<small> {{meow.date}} </small>
