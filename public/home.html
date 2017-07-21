@@ -3,11 +3,20 @@
 		<div ng-hide="currentUser">
 			<h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Login:</h3>
 			<br>
+
 			<form name="signInForm">
 				<input type="text" size="30" placeholder="Username" ng-model="username" class="form-control input-md" required="required">
 				<br>
 				<input type="password" size="30" placeholder="Password" ng-model="password" class="form-control input-md" required="required">
 				<br>
+
+				<div ng-controller="HomeController">
+				<div class="alert alert-danger" ng-show="showFailAlert">
+		        	<button type="button" class="close" data-ng-click="switchBool('showFailAlert')">×</button> 
+		        	<strong>Fail!</strong> {{failTextAlert}}
+	        	</div>
+        		</div>
+
 				<button type="button" class="btn btn-primary" ng-click="signin()" ng-disabled="signInForm.$invalid">Sign In!</button>
 				<br><br>
 				<a href="#/signup">Not a member? Sign up!</a>

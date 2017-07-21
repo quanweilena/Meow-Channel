@@ -61,7 +61,19 @@
 					$rootScope.token = res.data.token;
 					$rootScope.currentUser = $scope.username;
 				}, function(err){
-					alert('bad login credentials');
+					// alert('bad login credentials');
+
+			    $scope.failTextAlert = "Wrong username or password!";
+			    $scope.showFailAlert = true;
+
+			    // switch flag
+			    $scope.switchBool = function (value) {
+			    $scope[value] = !$scope[value];
+			    };
+
+			    $scope.username = '';
+				$scope.password = '';
+
 				});
 			};
 
@@ -72,6 +84,7 @@
 				$rootScope.currentUser = null;
 				$scope.username = '';
 				$scope.password = '';
+				$scope.showFailAlert = false;
 			}
 
 			function getMeows(){
@@ -89,14 +102,22 @@
 					password: $scope.password
 				};
 				$http.post('/users', newUser).then(function(res){
-					alert('You are successfully signed up!');
 					$cookies.put('token', res.data.token);
 					$cookies.put('currentUser', $scope.username);
 					$rootScope.token = res.data.token;
 					$rootScope.currentUser = $scope.username;
 					$window.location.href = '#';
+					$scope.showFailAlert = false;
 				}, function(err){
-					alert('username already exists!');
+
+					$scope.failTextAlert = "Username already exists!";
+				    $scope.showFailAlert = true;
+
+				    // switch flag
+				    $scope.switchBool = function (value) {
+				    $scope[value] = !$scope[value];
+				    };
+
 					$scope.username = '';
 					$scope.password = '';
 				});
@@ -112,9 +133,9 @@
 	</div>
 	<!-- Footer -->
 	<footer class="text-center">
-	  <a class="up-arrow" href="#" data-toggle="tooltip" title="TO TOP">
+	  <!-- <a class="up-arrow" href="#pagetop" target="_self" data-toggle="tooltip" title="TO TOP">
 	    <span class="glyphicon glyphicon-chevron-up"></span>
-	  </a><br><br>
+	  </a><br><br> -->
 	  <p>Design By Dan Zhou</p> 
 	  <p>Email: quanweilena@gmail.com</p>
 	</footer>

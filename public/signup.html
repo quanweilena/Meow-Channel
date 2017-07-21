@@ -6,6 +6,15 @@
 				<form name="signupForm">
 					<input type="text" placeholder="Username" ng-model="username" class="form-control input-lg" required="required"><br>
 					<input type="password" placeholder="Password" ng-model="password" class="form-control input-lg" required="required"><br>
+
+					<div ng-controller="SignupController">
+						<div class="alert alert-danger" ng-show="showFailAlert">
+		        		<button type="button" class="close" data-ng-click="switchBool('showFailAlert')">×</button> 
+		        		<strong>Fail!</strong> {{failTextAlert}}
+	        			</div>
+        			</div>
+
+
 					<button type="button" class="btn btn-primary btn-block btn-lg" ng-click = "submitSignup()" ng-disabled="signupForm.$invalid">Sign up!</button><br>
 					<a href="#">Already a member? Sign in!</a>
 				</form>
