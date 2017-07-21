@@ -37,11 +37,15 @@ app.post('/meows', function(req,res,next){
 	var token = req.headers.authorization;
 	var user = jwt.decode(token, JWT_SECRET);
 
+	var TimeDate = new Date();
+
 	db.collection('meows', function(err, meowsCollection){
 		var newMeow = {
 			text: req.body.newMeow,
 			user: user._id,
-			username: user.username
+			username: user.username,
+			date: TimeDate.toLocaleDateString(),
+			time: TimeDate.toLocaleTimeString()
 		};
 		meowsCollection.insert(newMeow, {w:1}, function(err){
 		return res.send();
@@ -103,8 +107,8 @@ app.post('/users', function(req,res,next){
 app.put('/users/signin', function(req,res,next){
 
 	db.collection('users', function(err, usersCollection){
-
 		usersCollection.findOne({username: req.body.username}, function(err, user){
+			if(user != null){
 			bcrypt.compare(req.body.password, user.password, function(err, result){
 				if(result){
 					var token = jwt.encode(user, JWT_SECRET);
@@ -112,7 +116,9 @@ app.put('/users/signin', function(req,res,next){
 				} else{
 					return res.status(400).send();
 				}
-			});
+			})} else {
+				return res.status(400).send();
+			};
 		});
 	});
 });

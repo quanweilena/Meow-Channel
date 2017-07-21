@@ -18,6 +18,8 @@
 			<h3><span class="glyphicon glyphicon-user"></span> Hello, {{currentUser}} !</h3>
 			<br><br>
 			<a href ng-click="logout()">Log out</a>
+			<br><br><br>
+			<img src="meow_pic.jpg" class="img-responsive">
 	</div>
 
 	</div>
@@ -26,7 +28,6 @@
 	<div class="col-md-8">
 
 		<div ng-hide="currentUser">
-			<!-- <h1>Explore the secret world of your cat!</h1> -->
 			<img src="meow_pic.jpg" class="img-responsive">
 		</div>
 
@@ -40,7 +41,9 @@
 				{{ meow.text }}
 				<a href ng-click="removeMeow(meow)" class="btn pull-right"><span class="glyphicon glyphicon-remove"></span></a>
 				<br>
-				<small>{{meow.username}}</small>
+				<small>By {{meow.username}} </small>
+				<small> {{meow.date}} </small>
+				<small> {{meow.time}} </small>
 			</h4>
 		</div>
 
