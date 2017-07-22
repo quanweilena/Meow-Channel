@@ -82,7 +82,7 @@ app.post('/users', function(req,res,next){
 	db.collection('users', function(err, usersCollection){
 		usersCollection.findOne({username: req.body.username}, function(err, user){
 			if(user != null){
-				console.log('username exists');
+				// console.log('username exists');
 				return res.status(400).send();
 			} else{
 				bcrypt.genSalt(10, function(err, salt) {
