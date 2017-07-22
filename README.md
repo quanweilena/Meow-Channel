@@ -25,7 +25,7 @@ Angular.js   Node.js   Mongodb   npm
 
 * Delete Meow:  Hit the "x" button to delete a Meow.  Note that one user can only delete his/her own Meows.  Admin user can delete all posted Meows.
 
-* Create admin user:  On signup page, use "admin" as the username to create the admin use to manage Meows.
+* Create admin user:  On signup page, use "admin" as the username to create the admin user to manage Meows.
 
 ## Authors
 
